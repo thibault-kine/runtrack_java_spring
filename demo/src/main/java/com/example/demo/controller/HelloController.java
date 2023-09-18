@@ -8,22 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @PropertySource("classpath:application.yml")
 public class HelloController {
-    @Value("${spring.profiles.active}")
-    String activeProfile;
 
-    @Value("${spring.profiles.dev.message}")
-    String devMsg;
-
-    @Value("${spring.profiles.prod.message}")
-    String prodMsg;
+    @Value("${profiles.${profiles.active}.message}")
+    String msg;
 
     @GetMapping("/")
-    public String hello() {
-        if("dev".equals(activeProfile)) {
-            return devMsg;
-        }
-        else {
-            return prodMsg;
-        }
-    }
+    public String hello() { return msg; }
 }
