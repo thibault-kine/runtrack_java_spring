@@ -5,6 +5,11 @@
     <title>Thymeleaf View</title>
 </head>
 <body>
-    <h1>Hello View</h1>
+    <h1>Mes informations</h1>
+    <ul data-th-object="${utilisateur}">
+        <li data-th-text="*{prenom}"></li>
+        <li data-th-text="*{nom}"></li>
+        <li data-th-text="*{age}"></li>
+    </ul>
 </body>
 </html>
