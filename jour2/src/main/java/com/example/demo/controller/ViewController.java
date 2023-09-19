@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.MyForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,9 +37,11 @@ public class ViewController {
     }
 
     @PostMapping("/job3/welcome")
-    public String Job3Submit(@ModelAttribute MyForm form, Model model) {
+    public String Job3Submit(@ModelAttribute @Validated MyForm form, Model model, BindingResult bindingResult) {
         String message = String.format("Bienvenue, %s !", form.getFname());
         model.addAttribute("message", message);
-        return "view_job3_welcome";
+
+        if(!bindingResult.hasErrors()) return "view_job3_welcome";
+        else return "view_job3_errors";
     }
 }

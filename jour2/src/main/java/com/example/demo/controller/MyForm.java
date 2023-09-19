@@ -1,8 +1,9 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 public class MyForm {
 
-    private String fname, lname;
+    private String fname;
+    private String lname;
     private int age;
 
     public String getFname() {
@@ -17,9 +18,7 @@ public class MyForm {
         return lname;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
-    }
+    public void setLname(String lname) { this.lname = lname; }
 
     public int getAge() {
         return age;
