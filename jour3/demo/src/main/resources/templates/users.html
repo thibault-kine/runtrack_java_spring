@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .person {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: fit-content;
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        .person h2 {
+            margin: 0;
+        }
+
+        .person form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .person form label {
+            margin-right: 30px;
+        }
+
+        .person form div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+
+        button {
+            margin: 5px 0;
+            font-weight: bold;
+            border: none;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        .btn-sub {
+            background-color: lime;
+        }
+
+        .btn-del {
+            background-color: red;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div th:each="person : ${persons}" class="person">
+        <h2 th:text="${person.id}"></h2>
+
+        <form method="post" action="/submit">
+            <input type="hidden" name="id" th:value="${person.id}">
+            <div>
+                <label for="firstName">Prénom</label>
+                <input type="text" name="firstName" th:value="${person.firstName}">
+            </div>
+
+            <div>
+                <label for="lastName">Nom</label>
+                <input type="text" name="lastName" th:value="${person.lastName}">
+            </div>
+
+            <div>
+                <label for="age">Age</label>
+                <input type="number" name="age" th:value="${person.age}">
+            </div>
+
+            <button type="submit" class="btn-sub">Valider</button>
+        </form>
+        
+        <form method="post" action="/delete">
+            <input type="hidden" name="id" th:value="${person.id}">
+            <button type="submit" class="btn-del">Supprimer</button>
+        </form>
+    </div>
+</body>
+</html>
