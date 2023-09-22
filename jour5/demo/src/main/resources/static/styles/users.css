@@ -1,0 +1,66 @@
+body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.person {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 275px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.person h2 {
+    margin: 0;
+}
+
+.person form {
+    display: flex;
+    flex-direction: column;
+}
+
+.person form label {
+    margin-right: 30px;
+}
+
+.person form div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+button {
+    margin: 5px 0;
+    font-weight: bold;
+    border: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.btn-sub {
+    background-color: lime;
+}
+
+.btn-del {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-redirect-add-user {
+    background-color: #00ccff;
+    width: 297px;
+    height: 205px;
+    color: white;
+    font-size: 60px;
+    margin: auto;
+    border: 1px solid #00b7e4;
+}
+
+.btn-redirect-add-user:hover {
+    background-color: #47daff;
+}

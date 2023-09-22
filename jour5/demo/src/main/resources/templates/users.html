@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+
+    <link rel="stylesheet" href="../static/styles/users.css">
+</head>
+<body>
+    <div th:each="person : ${persons}" class="person">
+        <h2 th:text="${person.id}"></h2>
+
+        <form method="post" action="/submit">
+            <input type="hidden" name="id" th:value="${person.id}">
+            <div>
+                <label for="firstName">Prénom</label>
+                <input type="text" name="firstName" th:value="${person.firstName}">
+            </div>
+
+            <div>
+                <label for="lastName">Nom</label>
+                <input type="text" name="lastName" th:value="${person.lastName}">
+            </div>
+
+            <div>
+                <label for="age">Age</label>
+                <input type="number" name="age" th:value="${person.age}">
+            </div>
+
+            <div>
+                <label for="email">Email</label>
+                <input type="text" name="email" th:value="${person.email}">
+            </div>
+
+            <div>
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" th:value="${person.password}">
+            </div>
+
+            <button type="submit" class="btn-sub">Valider</button>
+        </form>
+        
+        <form method="post" action="/delete">
+            <input type="hidden" name="id" th:value="${person.id}">
+            <button type="submit" class="btn-del">Supprimer</button>
+        </form>
+    </div>
+
+    <div>
+        <form method="get" action="/newUser">
+            <button type="submit" class="btn-redirect-add-user">+</button>
+        </form>
+    </div>
+</body>
+</html>

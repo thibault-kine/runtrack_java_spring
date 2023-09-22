@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un utilisateur</title>
+
+    <link rel="stylesheet" href="../static/styles/newUser.css">
+</head>
+<body>
+    <div id="form-container">
+        <form action="/newUser/submit" method="post">
+            <h2>Ajouter un nouvel utilisateur</h2>
+            <div>
+                <label for="firstName">Prénom</label>
+                <input type="text" name="firstName" th:value="${firstName}">
+            </div>
+            <div>
+                <label for="lastName">Nom</label>
+                <input type="text" name="lastName" th:value="${lastName}">
+            </div>
+            <div>
+                <label for="age">Âge</label>
+                <input type="number" name="age" th:value="${age}">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="text" name="email" th:value="${email}">
+            </div>
+            <div>
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" th:value="${password}">
+            </div>
+
+            <button type="submit">Créer nouvel utilisateur</button>
+        </form>
+    </div>
+</body>
+</html>
