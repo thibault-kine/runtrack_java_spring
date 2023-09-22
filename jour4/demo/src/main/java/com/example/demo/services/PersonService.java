@@ -3,28 +3,41 @@ package com.example.demo.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.context.annotation.Primary;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.interfaces.PersonRepository;
 import com.example.demo.models.PersonEntity;
 
 @Service
-@Primary
-public interface PersonService extends JpaRepository<PersonEntity, Integer> {
+public class PersonService {
+    
+    private PersonRepository repo;
 
-    // CREATE
-    void createPerson(String fname, String lname, int age);
+    
+    @Autowired
+    public PersonService(PersonRepository repository) { this.repo = repository; }
 
-    // READ ONE
-    Optional<PersonEntity> getPerson(int id);
+    public void createPerson(String firstName, String lastName, int age) {
+        repo.save(new PersonEntity(firstName, lastName, age));
+    }
 
-    // READ ALL
-    List<PersonEntity> getAllPersons();
+    public List<PersonEntity> getAll() {
+        return repo.findAll();
+    }
 
-    // UPDATE
-    void updatePerson(int id, String firstName, String lastName, int age);
+    public Optional<PersonEntity> getOneByID(int id) {
+        return repo.findById(id);
+    }
 
-    // DELETE
-    void deletePerson(int id);
+    public void updatePerson(int id, String firstName, String lastName, int age) {
+        PersonEntity p = getOneByID(id).get();
+        p.setAge(age);
+        p.setFirstName(firstName);
+        p.setLastName(lastName);
+    }
+
+    public void deletePerson(int id) {
+        repo.delete(getOneByID(id).get());
+    }
 }

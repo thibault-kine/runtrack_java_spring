@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.models.PersonEntity;
 import com.example.demo.services.PersonService;
 
+
 @Controller
 public class PersonController {
 
@@ -21,16 +22,16 @@ public class PersonController {
     @GetMapping("/users")
     public String UsersView(Model model) {
         
-        List<PersonEntity> persons = service.getAllPersons();
+        List<PersonEntity> persons = service.getAll();
         // Si la base de données est vide, ajouter des entrées
-        if(persons.size() == 0) {
+        if(persons.isEmpty()) {
             service.createPerson("Thibault", "Kine", 21);
             service.createPerson("Ibrahim", "Sylla", 21);
             service.createPerson("Cyril", "Porez", 34);
             service.createPerson("Jean", "Bonbeurre", 41);
             service.createPerson("Elon", "Musk", 52);
             service.createPerson("Roxan", "Roumégas", 45);
-            persons = service.getAllPersons();
+            persons = service.getAll();
         }
         
         model.addAttribute("persons", persons);
